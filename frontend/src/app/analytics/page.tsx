@@ -112,7 +112,11 @@ export default function AnalyticsPage() {
             {deptData.length > 0 ? (
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
-                  <Pie data={deptData} cx="50%" cy="50%" innerRadius={0} outerRadius={80} fill="#8884d8" dataKey="value" label={({ name, percent }: { name: string; percent?: number }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}>
+                  <Pie data={deptData} cx="50%" cy="50%" innerRadius={0} outerRadius={80} fill="#8884d8" dataKey="value" label={(props: any) => {
+                    const name = props.name ?? "";
+                    const percent = props.percent ?? 0;
+                    return `${name} ${(percent * 100).toFixed(0)}%`;
+                  }}>
                     {deptData.map((entry: any, index: number) => (
                       <Cell key={`cell-${index}`} fill={COLORS[(index + 2) % COLORS.length]} />
                     ))}
