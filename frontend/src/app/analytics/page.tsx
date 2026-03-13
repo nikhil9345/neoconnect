@@ -112,9 +112,9 @@ export default function AnalyticsPage() {
             {deptData.length > 0 ? (
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
-                  <Pie data={deptData} cx="50%" cy="50%" innerRadius={0} outerRadius={80} fill="#8884d8" dataKey="value" label={({name, percent}) => `${name} ${(percent * 100).toFixed(0)}%`}>
+                  <Pie data={deptData} cx="50%" cy="50%" innerRadius={0} outerRadius={80} fill="#8884d8" dataKey="value" label={({ name, percent }: { name: string; percent?: number }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}>
                     {deptData.map((entry: any, index: number) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[(index+2) % COLORS.length]} />
+                      <Cell key={`cell-${index}`} fill={COLORS[(index + 2) % COLORS.length]} />
                     ))}
                   </Pie>
                   <RechartsTooltip />
@@ -132,9 +132,9 @@ export default function AnalyticsPage() {
             {categoryData.length > 0 ? (
               <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={categoryData} margin={{ top: 20, right: 0, left: 0, bottom: 20 }}>
-                  <XAxis dataKey="name" tick={{fontSize: 12}} interval={0} angle={-45} textAnchor="end" />
+                  <XAxis dataKey="name" tick={{ fontSize: 12 }} interval={0} angle={-45} textAnchor="end" />
                   <YAxis allowDecimals={false} />
-                  <RechartsTooltip cursor={{fill: '#f3f4f6'}} />
+                  <RechartsTooltip cursor={{ fill: '#f3f4f6' }} />
                   <Bar dataKey="value" fill="#3b82f6" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
